@@ -1,0 +1,78 @@
+﻿@model GreenBowl.Models.ViewModels.ProcessingBatchVM
+
+<div class="card mb-3">
+    <div class="card-header">
+        Batch @Model.Batch
+    </div>
+
+    <div class="card-body">
+        <input type="hidden" asp-for="Batch" />
+        <input type="hidden" asp-for="Lot" />
+
+        <div class="mb-2">
+            <label>Start Time Processing</label>
+            <input asp-for="StartTimeProcessing" type="time" class="form-control" />
+        </div>
+
+        <div class="mb-2">
+            <label>Finish Time Processing</label>
+            <input asp-for="FinishTimeProcessing" type="time" class="form-control" />
+        </div>
+
+        <div class="form-check mb-2">
+            <input asp-for="Alarm" class="form-check-input" />
+            <label class="form-check-label">Alarm</label>
+        </div>
+
+        <div class="mb-2">
+            <label>Reason (required if Alarm)</label>
+            <input asp-for="Reason" class="form-control" />
+            <span asp-validation-for="Reason" class="text-danger"></span>
+        </div>
+
+        <div class="mb-2">
+            <label>Correction Action (required if Alarm)</label>
+            <input asp-for="CorrectionAction" class="form-control" />
+            <span asp-validation-for="CorrectionAction" class="text-danger"></span>
+        </div>
+
+        <div class="mb-2">
+            <label>Number of Rejected Pouch</label>
+            <input asp-for="NumberOfRejectedPouch" class="form-control" />
+        </div>
+
+        <div class="mb-2">
+            <label>Comments</label>
+            <input asp-for="Comments" class="form-control" />
+        </div>
+
+        <hr />
+
+        <h6>15-min checks</h6>
+
+        @if (Model.Checks == null || Model.Checks.Count == 0)
+        {
+            <div class="text-muted">No checks (set valid start/finish and click Generate checks).</div>
+        }
+        else
+        {
+            <div class="list-group">
+                @for (int i = 0; i < Model.Checks.Count; i++)
+                {
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <input type="hidden" asp-for="Checks[i].Batch" />
+                        <input type="hidden" asp-for="Checks[i].Lot" />
+                        <input type="hidden" asp-for="Checks[i].TimeOfCheck" />
+
+                        <div>@Model.Checks[i].TimeOfCheck.ToString("HH:mm")</div>
+
+                        <div class="form-check m-0">
+                            <input asp-for="Checks[i].XRayRejectedPouches" class="form-check-input" />
+                            <label class="form-check-label">X-Ray rejected</label>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

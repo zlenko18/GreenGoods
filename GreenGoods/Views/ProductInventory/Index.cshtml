@@ -1,0 +1,136 @@
+﻿@model IEnumerable<GreenBowl.Models.ProductInventory>
+@using Microsoft.AspNetCore.Authorization;
+
+<h2>Product Inventory</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Lot</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-sm align-middle">
+        <thead>
+            <tr>
+                <th>Lot</th>
+                <th>Product</th>
+                <th>BatchWeight</th>
+                <th>Pouch</th>
+
+                <th>ProductionDate</th>
+                <th>ExpiryDate</th>
+                <th>CartonDate</th>
+
+                <th>QACheck</th>
+
+                <th>WeightRejected</th>
+                <th>XRayRejected</th>
+                <th>SealingRejected</th>
+                <th>NoPrint</th>
+                <th>Sample</th>
+                <th>QCRetention</th>
+                <th>TotalRejected</th>
+
+                <th>ProductForSale</th>
+                <th>TotalCase</th>
+
+                <th>ActualInventory</th>
+                <th>Productivity</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Lot</td>
+                    <td>@item.ProductName</td>
+                    <td>@item.BatchWeight</td>
+                    <td>@item.Pouch</td>
+
+                    <td>@item.ProductionDate.ToString("dd/MM/yyyy")</td>
+                    <td>@item.ExpiryDate.ToString("dd/MM/yyyy")</td>
+                    <td>@item.CartonDate.ToString("dd/MM/yyyy")</td>
+
+                    <td>@(item.QACheck ? "Yes" : "No")</td>
+
+                    <td>@item.WeightRejected</td>
+                    <td>@item.XRayRejected</td>
+                    <td>@item.SealingRejected</td>
+                    <td>@item.NoPrint</td>
+                    <td>@item.Sample</td>
+                    <td>@item.QCRetention</td>
+                    <td>@item.TotalRejected</td>
+
+                    <td>@item.ProductForSale</td>
+                    <td>@item.TotalCase</td>
+
+                    <td>@item.ActualInventory</td>
+                    <td>@item.Productivity</td>
+
+                    <td class="text-nowrap">
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a class="btn btn-outline-success"
+                               asp-action="Edit"
+                               asp-route-lot="@item.Lot">
+                                Edit
+                            </a>
+
+                            @if(User.IsInRole("Admin")) 
+                            {
+                            <a class="btn btn-outline-danger"
+                               asp-action="Delete"
+                               asp-route-lot="@item.Lot">
+                                Delete
+                            </a>
+                            }
+
+                            <a class="btn btn-outline-primary"
+                               asp-controller="EquipmentForm"
+                               asp-action="Edit"
+                               asp-route-lot="@item.Lot">
+                                Equipment
+                            </a>
+
+                            <a class="btn btn-outline-primary"
+                               asp-controller="BatchingStepForm"
+                               asp-action="Edit"
+                               asp-route-lot="@item.Lot">
+                                Batching
+                            </a>
+
+                            <a class="btn btn-outline-primary"
+                               asp-controller="PackagingForm"
+                               asp-action="Edit"
+                               asp-route-lot="@item.Lot">
+                                Packaging
+                            </a>
+
+                            <a class="btn btn-outline-primary"
+                               asp-controller="ProcessingForm"
+                               asp-action="Edit"
+                               asp-route-lot="@item.Lot">
+                                Processing
+                            </a>
+
+                            <a class="btn btn-outline-primary"
+                               asp-controller="XRayForm"
+                               asp-action="Edit"
+                               asp-route-lot="@item.Lot">
+                                X-Ray
+                            </a>
+
+                            <a class="btn btn-outline-primary"
+                               asp-controller="BulgingTestForm"
+                               asp-action="Edit"
+                               asp-route-lot="@item.Lot">
+                                Bulging
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

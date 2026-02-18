@@ -1,0 +1,78 @@
+﻿@model GreenBowl.Models.ViewModels.PackagingBatchVM
+
+<div class="card mb-3">
+    <div class="card-header">
+        Batch @Model.Batch
+    </div>
+
+    <div class="card-body">
+        <input type="hidden" asp-for="Batch" />
+        <input type="hidden" asp-for="Lot" />
+
+        <div class="mb-2">
+            <label class="form-label">Start time</label>
+            <input asp-for="StartTimeFilling" type="time" class="form-control" />
+        </div>
+
+        <div class="mb-2">
+            <label class="form-label">Finish time</label>
+            <input asp-for="FinishTimeFilling" type="time" class="form-control" />
+        </div>
+
+        <div class="form-check mb-2">
+            <input asp-for="PouchHygienicCondition" class="form-check-input" />
+            <label class="form-check-label">Pouch hygienic condition</label>
+        </div>
+
+        <div class="mb-2">
+            <label class="form-label">Number of pouches</label>
+            <input asp-for="NumberOfPouchMade" class="form-control" />
+        </div>
+
+        <div class="mb-2">
+            <label class="form-label">Weight Rejected</label>
+            <input asp-for="WeightRejected" class="form-control" />
+        </div>
+
+        <div class="mb-2">
+            <label class="form-label">Sealing Rejected</label>
+            <input asp-for="SealingRejected" class="form-control" />
+        </div>
+
+        <div class="mb-2">
+            <label class="form-label">No Print Rejected</label>
+            <input asp-for="NoPrintRejected" class="form-control" />
+        </div>
+
+        <div class="mb-2">
+            <label class="form-label">Comments</label>
+            <input asp-for="Comments" class="form-control" />
+        </div>
+
+        <hr />
+
+        <h6>15-minute checks</h6>
+
+        @if (Model.Checks.Count == 0)
+        {
+            <div class="text-muted">
+                Set start & finish times and click “Generate checks”.
+            </div>
+        }
+        else
+        {
+            @for (int i = 0; i < Model.Checks.Count; i++)
+            {
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <input type="hidden" asp-for="Checks[i].Batch" />
+                    <input type="hidden" asp-for="Checks[i].Lot" />
+                    <input type="hidden" asp-for="Checks[i].TimeOfCheck" />
+
+                    <span>@Model.Checks[i].TimeOfCheck.ToString("HH:mm")</span>
+
+                    <input asp-for="Checks[i].SealingCondition" />
+                </div>
+            }
+        }
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model GreenBowl.Models.ViewModels.XRayBatchVM
+
+<div class="card h-100">
+    <div class="card-header">
+        <strong>Batch @Model.Batch</strong>
+    </div>
+
+    <div class="card-body">
+        <input type="hidden" asp-for="Batch" />
+        <input type="hidden" asp-for="Lot" />
+
+        <div class="mb-2">
+            <label class="form-label">Start time</label>
+            <input asp-for="StartTime" type="datetime-local" class="form-control" />
+        </div>
+
+        <div class="mb-2">
+            <label class="form-label">End time</label>
+            <input asp-for="EndTime" type="datetime-local" class="form-control" />
+        </div>
+
+        <div class="form-check mb-2">
+            <input asp-for="Indicator1" class="form-check-input" />
+            <label class="form-check-label">Indicator 1</label>
+        </div>
+
+        <div class="form-check mb-2">
+            <input asp-for="Indicator2" class="form-check-input" />
+            <label class="form-check-label">Indicator 2</label>
+        </div>
+
+        <div class="form-check mb-2">
+            <input asp-for="Indicator3" class="form-check-input" />
+            <label class="form-check-label">Indicator 3</label>
+        </div>
+
+        <div class="mb-2">
+            <label class="form-label">Deviation / Corrective action</label>
+            <textarea asp-for="Deviation_CorrectiveAction" class="form-control" rows="4"></textarea>
+        </div>
+    </div>
+</div>

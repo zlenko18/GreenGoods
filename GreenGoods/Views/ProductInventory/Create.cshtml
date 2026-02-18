@@ -1,0 +1,32 @@
+﻿@model GreenBowl.Models.ProductInventory
+
+<h2>Create Product Lot</h2>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label>Product</label>
+        <select asp-for="ProductName"
+                asp-items="Html.GetEnumSelectList<ProductName>()"></select>
+    </div>
+
+    <div>
+        <label>Production Date</label>
+        <input asp-for="ProductionDate" type="date" />
+    </div>
+
+    <div>
+        <label>Expiry Date</label>
+        <input asp-for="ExpiryDate" type="date" />
+    </div>
+
+    <div>
+        <label>Carton Date</label>
+        <input asp-for="CartonDate" type="date" />
+    </div>
+    <div style="margin:10px">
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary">Create Lot</button>
+    </div>
+</form>

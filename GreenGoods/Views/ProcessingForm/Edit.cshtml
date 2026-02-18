@@ -1,0 +1,42 @@
+﻿@model GreenBowl.Models.ViewModels.ProcessingFormVM
+
+<h2 class="mb-3">Batching Control – Processing</h2>
+
+<partial name="_FormAlerts" />
+
+<form asp-action="Edit" method="post" class="card shadow-sm">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Lot" />
+
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Production date</label>
+                <input asp-for="ProductionDate" class="form-control" type="date" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Production supervisor</label>
+                <input asp-for="ProductionSupervisor" class="form-control" />
+            </div>
+        </div>
+
+        <partial name="_ProcessingBatchColumn" for="A" />
+        <partial name="_ProcessingBatchColumn" for="B" />
+        <partial name="_ProcessingBatchColumn" for="C" />
+        <partial name="_ProcessingBatchColumn" for="D" />
+    </div>
+
+    <div class="card-footer d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit"
+                class="btn btn-outline-secondary"
+                formaction="@Url.Action("GenerateChecks")">
+            Generate checks
+        </button>
+        <a asp-controller="ProductInventory" asp-action="Index" class="btn btn-secondary ms-auto">Back</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

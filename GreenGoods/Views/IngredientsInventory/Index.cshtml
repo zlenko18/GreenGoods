@@ -1,0 +1,37 @@
+﻿@model GreenBowl.Models.ViewModels.IngredientsInventoryIndexVM
+
+<h2>Ingredients Inventory</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create Ingredient Lot</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ingredient Lot</th>
+            <th>Ingredient</th>
+            <th>Quantity</th>
+            <th>Supplier</th>
+            <th>Truck Plate</th>
+            <th>Quality Check</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.items.Count; i++)
+        {
+            <tr>
+                <td>@Model.items[i].IngredientLot</td>
+                <td>@Model.items[i].IngredientName</td>
+                <td>@Model.items[i].Quantity</td>
+                <td>@Model.trucks[i].SupplierName</td>
+                <td>@Model.trucks[i].TruckPlate</td>
+                <td>@Model.trucks[i].QualityCheck</td>
+                <td>
+                    <a asp-action="Edit" asp-route-ingredientLot="@Model.items[i].IngredientLot">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

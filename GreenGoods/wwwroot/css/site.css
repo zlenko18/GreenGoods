@@ -1,0 +1,125 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    background-image: url('/images/GreenBowlBG.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #f4f1ec;
+    margin-bottom: 60px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+/* Dark olive navbar */
+.navbar-olive {
+    background-color: #556B2F; /* Dark Olive Green */
+    border-bottom: 2px solid #3e4f22;
+}
+
+/* Brand + links */
+.navbar-olive .navbar-brand{
+    font-weight: 1000; 
+    font-size: 30px;
+}
+.navbar-olive .nav-link {
+    color: #ffffff !important;
+    font-weight: 500; 
+    font-size: 22px;
+}
+
+/* Hover state */
+.navbar-olive .nav-link:hover {
+    font-weight:900;
+}
+
+
+.btn-primary {
+    background-color: #556B2F;
+    border-color: #3e4f22;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #4b5f2a;
+    border-color: #36461e;
+    color: #ffffff;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+    background-color: #3e4f22;
+    border-color: #2e3618;
+}
+.main-content {
+    margin-top: 2rem;
+}
+
+html, body {
+    font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 700;
+    color: white;
+}
+
+.btn {
+    font-weight: 600;
+}
+
+.table {
+    border-collapse: separate !important;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+
+form {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.table-responsive {
+    overflow-x: hidden;
+}
+
+.table-responsive th,
+.table-responsive td {
+    white-space: normal; /* allow wrapping */
+    word-break: break-word;
+    font-size: 0.9rem;
+}
+p {
+    color: white;
+}

@@ -1,0 +1,44 @@
+﻿@model GreenBowl.Models.ViewModels.ReceiptVM
+
+<h2>Sell</h2>
+<div asp-validation-summary="All" class="text-danger"></div>
+<partial name="_FormAlerts" />
+<input type="hidden" asp-for="ID" />
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label class="form-label">Lot</label>
+        <select asp-for="Lot" asp-items="Model.LotOptions" class="form-select"></select>
+    </div>
+
+    <div>
+        <label>Client</label>
+        <input asp-for="Client" type="text" />
+    </div>
+
+    <div>
+        <label>Address</label>
+        <input asp-for="Address" type="text" />
+    </div>
+
+    <div>
+        <label>Selling Date</label>
+        <input asp-for="SellingDate" type="date" />
+    </div>
+
+    <div>
+        <label>Delivery Date</label>
+        <input asp-for="DeliveryDate" type="date" />
+    </div>
+
+    <div>
+        <label>Quantity</label>
+        <input asp-for="Quantity" type="number" />
+    </div>
+
+    <div style="margin:10px">
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary">Sell</button>
+    </div>
+</form>

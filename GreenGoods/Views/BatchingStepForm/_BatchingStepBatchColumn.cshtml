@@ -1,0 +1,88 @@
+﻿@model GreenBowl.Models.ViewModels.BatchingStepBatchVM
+
+
+<div class="card mb-3">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Batch @Model.Batch</span>
+
+        <button type="submit"
+                class="btn btn-sm btn-secondary"
+                formaction="@Url.Action("AddRow", "BatchingStepForm", new { batch = Model.Batch })">
+            + Row
+        </button>
+    </div>
+
+    <div class="card-body">
+        <input type="hidden" asp-for="Batch" />
+        <input type="hidden" asp-for="Lot" />
+
+        @if (Model.Lines.Count == 0)
+        {
+            <div class="text-muted">No rows.</div>
+        }
+        else
+        {
+            @for (int i = 0; i < Model.Lines.Count; i++)
+            {
+                <div class="border rounded p-2 mb-2">
+                    <input type="hidden" asp-for="Lines[i].Batch" />
+                    <input type="hidden" asp-for="Lines[i].Lot" />
+
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <strong>Ingredient row @(i + 1)</strong>
+
+                        <button type="submit"
+                                class="btn btn-sm btn-outline-danger"
+                                formaction="@Url.Action("RemoveRow", "BatchingStepForm", new { batch = Model.Batch, index = i })">
+                            Remove
+                        </button>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label">Ingredient Lot</label>
+                        @{
+                            var options = ViewData["IngredientLotOptions"] as List<SelectListItem> ?? new();
+                        }
+                        <select asp-for="Lines[i].IngredientLot" class="form-select">
+                            @foreach (var opt in options)
+                            {
+                                <option value="@opt.Value" selected="@(opt.Value == Model.Lines[i].IngredientLot)">
+                                    @opt.Text
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="row g-2">
+                        <div class="col-6 form-check">
+                            <input asp-for="Lines[i].Allergens" class="form-check-input" />
+                            <label class="form-check-label">Allergens</label>
+                        </div>
+
+                        <div class="col-6 form-check">
+                            <input asp-for="Lines[i].HygenicCondition" class="form-check-input" />
+                            <label class="form-check-label">Hygienic condition</label>
+                        </div>
+                    </div>
+
+                    <div class="row g-2 mt-2">
+                        <div class="col">
+                            <label class="form-label">Amount per batch</label>
+                            <input asp-for="Lines[i].AmountPerBatch" class="form-control" />
+                        </div>
+
+                        <div class="col">
+                            <label class="form-label">Expiry date</label>
+                            <input asp-for="Lines[i].ExpiryDate" type="date" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="mt-2">
+                        <label class="form-label">Comments</label>
+                        <input asp-for="Lines[i].Comments" class="form-control" />
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

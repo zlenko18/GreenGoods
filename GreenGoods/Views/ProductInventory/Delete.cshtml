@@ -1,0 +1,16 @@
+﻿@model GreenBowl.Models.ProductInventory
+
+<h3>Delete product inventory</h3>
+
+<h1>
+    Are you sure you want to delete product lot
+    <strong>@Model.Lot</strong> (@Model.ProductName)?
+</h1>
+
+<form asp-action="Delete" method="post" class="box">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Lot" />
+
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>

@@ -1,0 +1,38 @@
+﻿@model  IEnumerable<GreenBowl.Models.Receipt>
+<h2>Sell Inventory</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Sell Items</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Lot</th>
+            <th>Product Name</th>
+            <th>Client</th>
+            <th>Address</th>
+            <th>Selling Date</th>
+            <th>Delivery Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Lot</td>
+                <td>@item.ProductName</td>
+                <td>@item.Client</td>
+                <td>@item.Address</td>
+                <td>@item.SellingDate.ToString("dd/MM/yyyy")</td>
+                <td>@item.DeliveryDate.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-ID="@item.ID">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

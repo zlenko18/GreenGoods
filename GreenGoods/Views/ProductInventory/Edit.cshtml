@@ -1,0 +1,110 @@
+﻿@model GreenBowl.Models.ProductInventory
+
+@{
+    ViewData["Title"] = "Edit Product Inventory";
+}
+
+<h2>Edit Product Inventory – Lot @Model.Lot</h2>
+
+<partial name="_FormAlerts" />
+
+<form asp-action="Edit" method="post" class="box">
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" asp-for="Lot" />
+    <div class="mb-3">
+        <label class="form-label">Lot</label>
+        <input class="form-control" value="@Model.Lot" readonly />
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label asp-for="ProductName" class="form-label"></label>
+            <select asp-for="ProductName"
+                    asp-items="Html.GetEnumSelectList<ProductName>()"
+                    class="form-select">
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="ProductionDate" class="form-label"></label>
+            <input asp-for="ProductionDate" type="date" class="form-control" />
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="ExpiryDate" class="form-label"></label>
+            <input asp-for="ExpiryDate" type="date" class="form-control" />
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-3">
+            <label asp-for="BatchWeight"></label>
+            <input asp-for="BatchWeight" type="number" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="Pouch"></label>
+            <input asp-for="Pouch" type="number" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="ActualInventory"></label>
+            <input asp-for="ActualInventory" type="number" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="Productivity"></label>
+            <input asp-for="Productivity" type="number" class="form-control" />
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-2">
+            <label asp-for="WeightRejected"></label>
+            <input asp-for="WeightRejected" type="number" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <label asp-for="XRayRejected"></label>
+            <input asp-for="XRayRejected" type="number" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <label asp-for="SealingRejected"></label>
+            <input asp-for="SealingRejected" type="number" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <label asp-for="NoPrint"></label>
+            <input asp-for="NoPrint" type="number" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <label asp-for="Sample"></label>
+            <input asp-for="Sample" type="number" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <label asp-for="QCRetention"></label>
+            <input asp-for="QCRetention" type="number" class="form-control" />
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="form-check">
+        <input asp-for="QACheck" class="form-check-input" />
+        <label asp-for="QACheck" class="form-check-label"></label>
+    </div>
+
+    <hr />
+
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-success">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

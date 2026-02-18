@@ -1,0 +1,46 @@
+﻿@model GreenBowl.Models.ViewModels.EquipmentFormVM
+
+<h2 class="mb-3">Batching Control – Equipment</h2>
+
+<partial name="_FormAlerts" />
+
+<form asp-action="Edit" method="post" class="card shadow-sm">
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" asp-for="Lot" />
+
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Production date</label>
+                <input asp-for="ProductionDate" class="form-control" type="date" />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Filler supervisor</label>
+                <input asp-for="FillerSupervisor" class="form-control" />
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Revision</label>
+                <input asp-for="RevisionNumber" class="form-control" />
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Effective date</label>
+                <input asp-for="EffectiveDate" class="form-control" type="date" />
+            </div>
+        </div>
+
+        <partial name="_EquipmentBatchColumn" for="A" />
+        <partial name="_EquipmentBatchColumn" for="B" />
+        <partial name="_EquipmentBatchColumn" for="C" />
+        <partial name="_EquipmentBatchColumn" for="D" />
+    </div>
+
+    <div class="card-footer d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-controller="ProductInventory" asp-action="Index" class="btn btn-secondary ms-auto">Back</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
